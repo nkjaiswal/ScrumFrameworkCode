@@ -38,4 +38,7 @@ public class URLs {
 	public static String getBacklogCommentUrl(String sprintId, String backlogId){
 		return baseURL + "ScrumTool/Sprint/" + sprintId + "/Backlog/" + backlogId + "/Comment";
 	}
+	public static String getMyRoleUrl(){
+		return baseURL + "ScrumTool/User/MyRole/isAdmin";
+	}
 }

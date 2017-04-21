@@ -1,6 +1,8 @@
 package scrumtool.sprint;
 
-public class User {
+import java.io.Serializable;
+
+public class User  implements Serializable {
 	@SuppressWarnings("unused")
 	private String _id;
 	public String userid, email;
@@ -11,5 +13,8 @@ public class User {
 	}
 	public String getToken() {
 		return this.password;
+	}
+	public String toString(){
+		return userid + "|" + email;
 	}
 }

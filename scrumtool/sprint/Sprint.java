@@ -1,10 +1,11 @@
 package scrumtool.sprint;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Sprint {
+public class Sprint implements Serializable {
 	private String _id;
 	public String _userId;
 	public String SprintName;

@@ -1,7 +1,7 @@
 package scrumtool;
 
 import java.security.MessageDigest;
-import java.util.Base64;
+import android.util.Base64;
 import java.util.Date;
 import java.util.Formatter;
 
@@ -14,7 +14,7 @@ public class Reusable {
 		restHandler.POST(URLs.getMailerServiceUrl(), header, payload);
 	}
 	public static String toBASE64(String s){
-		return Base64.getEncoder().encodeToString(s.getBytes());
+		return Base64.encodeToString(s.getBytes(),Base64.DEFAULT);
 	}
 	public static String getSHA(String s){
 		return encryptPassword(s);

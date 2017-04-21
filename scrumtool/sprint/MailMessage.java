@@ -1,5 +1,7 @@
 package scrumtool.sprint;
 
-public class MailMessage {
+import java.io.Serializable;
+
+public class MailMessage  implements Serializable {
 	public String to,subject,message;
 }

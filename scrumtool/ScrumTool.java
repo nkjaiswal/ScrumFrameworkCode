@@ -1,5 +1,8 @@
 package scrumtool;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -97,9 +100,9 @@ public class ScrumTool implements ISprint, IUser {
 	}
 	
 	public String setEffortSpentOnBacklog(String sprintId, String backlogId, EffortSpent ef) throws ScrumToolException, Exception{
-		List<EffortSpent> efsp = new ArrayList<EffortSpent>();
-		efsp.add(ef);
-		String payload = gson.toJson(efsp);
+//		List<EffortSpent> efsp = new ArrayList<EffortSpent>();
+//		efsp.add(ef);
+		String payload = gson.toJson(ef);
 		String sResponse = restHandler.POST(URLs.getEfforSpentUrl(sprintId, backlogId), this.getAuthorizationHeader(), payload);
 		return sResponse;
 	}
@@ -111,7 +114,7 @@ public class ScrumTool implements ISprint, IUser {
 	}
 	//============USER REGISTRATION PART====================================
 	@Override
-	public String RegisterUser(User user) throws Exception {
+	public String RegisterUser(User user) throws ProtocolException, MalformedURLException, IOException, Exception {
 		user.setPassword(Reusable.getSHA(user.email  + "MyPrivateKey" + Math.random()));
 		String payload = gson.toJson(user);
 		String sResponse = restHandler.POST(URLs.getRegisterUserUrl(),this.getAuthorizationHeader(),payload);
@@ -137,5 +140,9 @@ public class ScrumTool implements ISprint, IUser {
 	public String activateUser(String userid, String token, String newPassword) throws Exception{
 		String payload = "{\"password\":\"" + newPassword + "\"}";
 		return restHandler.POST(URLs.getActivateUserUrl(userid, token), "", payload);
+	}
+
+	public String isAdmin() throws Exception{
+		return restHandler.GET(URLs.getMyRoleUrl(),getAuthorizationHeader());
 	}
 }
